@@ -1,7 +1,6 @@
-//Program to Check Vowel or Consonant
-
 #include <stdio.h>
-#include <ctype.h>   // for isalpha()
+#include <string.h>
+#include <ctype.h>
 
 int main() {
     char ch;
@@ -10,41 +9,30 @@ int main() {
     printf("Enter a character: ");
     scanf(" %c", &ch);
 
-    // Check if it is a letter
-    if (isalpha(ch)) {
-
-        // Check vowels
-        if (ch == 'a' || ch == 'A' ||
-            ch == 'e' || ch == 'E' ||
-            ch == 'i' || ch == 'I' ||
-            ch == 'o' || ch == 'O' ||
-            ch == 'u' || ch == 'U') {
-
-            printf("%c is a Vowel\n", ch);
-        }
-        else {
-            printf("%c is a Consonant\n", ch);
-        }
-
-    } else {
+    // Check if it's a letter first
+    if (!isalpha(ch)) {
         printf("%c is not an alphabet\n", ch);
+        return 0;
     }
 
-    return 0;
-}
+    printf("\n--- Method 1: Using if-else ---\n");
 
-//Using string search function 
-#include <stdio.h>
-#include <string.h>
+    // METHOD 1: Manual checking
+    if (ch == 'a' || ch == 'A' ||
+        ch == 'e' || ch == 'E' ||
+        ch == 'i' || ch == 'I' ||
+        ch == 'o' || ch == 'O' ||
+        ch == 'u' || ch == 'U') {
+        printf("%c is a Vowel\n", ch);
+    } else {
+        printf("%c is a Consonant\n", ch);
+    }
 
-int main() {
-    char ch;
+    printf("\n--- Method 2: Using strchr() ---\n");
+
+    // METHOD 2: Using string search
     char vowels[] = "aeiouAEIOU";
 
-    printf("Enter a character: ");
-    scanf(" %c", &ch);
-
-    // string search
     if (strchr(vowels, ch)) {
         printf("%c is a Vowel\n", ch);
     } else {
